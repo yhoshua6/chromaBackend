@@ -12,7 +12,8 @@ class ApplicationController < ActionController::API
           :infoId => user.info_id,
           :roleId => user.role_id,
           :branchRoleId => user.branch_role,
-          :notificationRole => user.notifications_role
+          :notificationRole => user.notifications_role,
+          :userName => user.user
         },
         status: :ok
     else

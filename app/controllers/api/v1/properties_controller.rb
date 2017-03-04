@@ -7,12 +7,12 @@ module Api::V1
     def index
       @properties = Property.all
 
-      render json: @properties
+      render json: @properties, status: :ok
     end
 
     # GET /properties/1
     def show
-      render json: @property
+      render json: @property, status: :ok
     end
 
     # POST /properties
@@ -20,7 +20,7 @@ module Api::V1
       @property = Property.new(property_params)
 
       if @property.save
-        render json: @property, status: :created, location: @property
+        render json: @property, status: :created
       else
         render json: @property.errors, status: :unprocessable_entity
       end

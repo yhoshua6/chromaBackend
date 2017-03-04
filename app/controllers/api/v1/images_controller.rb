@@ -7,12 +7,12 @@ module Api::V1
     def index
       @images = Image.all
 
-      render json: @images
+      render json: @images, status: :ok
     end
 
     # GET /images/1
     def show
-      render json: @image
+      render json: @image, status: :ok
     end
 
     # POST /images
@@ -20,7 +20,7 @@ module Api::V1
       @image = Image.new(image_params)
 
       if @image.save
-        render json: @image, status: :created, location: @image
+        render json: @image, status: :created
       else
         render json: @image.errors, status: :unprocessable_entity
       end

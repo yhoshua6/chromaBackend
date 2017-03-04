@@ -7,12 +7,12 @@ module Api::V1
     def index
       @depot_files = DepotFile.all
 
-      render json: @depot_files
+      render json: @depot_files, status: :ok
     end
 
     # GET /depot_files/1
     def show
-      render json: @depot_file
+      render json: @depot_file, status: :ok
     end
 
     # POST /depot_files
@@ -20,7 +20,7 @@ module Api::V1
       @depot_file = DepotFile.new(depot_file_params)
 
       if @depot_file.save
-        render json: @depot_file, status: :created, location: @depot_file
+        render json: @depot_file, status: :created
       else
         render json: @depot_file.errors, status: :unprocessable_entity
       end

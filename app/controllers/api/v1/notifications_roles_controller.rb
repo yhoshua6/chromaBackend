@@ -7,12 +7,12 @@ module Api::V1
     def index
       @notifications_roles = NotificationsRole.all
 
-      render json: @notifications_roles
+      render json: @notifications_roles, status: :ok
     end
 
     # GET /notifications_roles/1
     def show
-      render json: @notifications_role
+      render json: @notifications_role, status: :ok
     end
 
     # POST /notifications_roles
@@ -20,7 +20,7 @@ module Api::V1
       @notifications_role = NotificationsRole.new(notifications_role_params)
 
       if @notifications_role.save
-        render json: @notifications_role, status: :created, location: @notifications_role
+        render json: @notifications_role, status: :created
       else
         render json: @notifications_role.errors, status: :unprocessable_entity
       end

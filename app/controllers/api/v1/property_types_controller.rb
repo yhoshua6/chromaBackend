@@ -7,12 +7,12 @@ module Api::V1
     def index
       @property_types = PropertyType.all
 
-      render json: @property_types
+      render json: @property_types, status: :ok
     end
 
     # GET /property_types/1
     def show
-      render json: @property_type
+      render json: @property_type, status: :ok
     end
 
     # POST /property_types
@@ -20,7 +20,7 @@ module Api::V1
       @property_type = PropertyType.new(property_type_params)
 
       if @property_type.save
-        render json: @property_type, status: :created, location: @property_type
+        render json: @property_type, status: :created
       else
         render json: @property_type.errors, status: :unprocessable_entity
       end

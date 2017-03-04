@@ -7,12 +7,12 @@ module Api::V1
     def index
       @info_users = InfoUser.all
 
-      render json: @info_users
+      render json: @info_users, status: :ok
     end
 
     # GET /info_users/1
     def show
-      render json: @info_user
+      render json: @info_user, status: :ok
     end
 
     # POST /info_users
@@ -20,7 +20,7 @@ module Api::V1
       @info_user = InfoUser.new(info_user_params)
 
       if @info_user.save
-        render json: @info_user, status: :created, location: @info_user
+        render json: @info_user, status: :created
       else
         render json: @info_user.errors, status: :unprocessable_entity
       end

@@ -7,12 +7,12 @@ module Api::V1
     def index
       @users_roles = UsersRole.all
 
-      render json: @users_roles
+      render json: @users_roles, status: :ok
     end
 
     # GET /users_roles/1
     def show
-      render json: @users_role
+      render json: @users_role, status: :ok
     end
 
     # POST /users_roles
@@ -20,7 +20,7 @@ module Api::V1
       @users_role = UsersRole.new(users_role_params)
 
       if @users_role.save
-        render json: @users_role, status: :created, location: @users_role
+        render json: @users_role, status: :created
       else
         render json: @users_role.errors, status: :unprocessable_entity
       end

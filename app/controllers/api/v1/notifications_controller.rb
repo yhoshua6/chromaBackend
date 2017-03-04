@@ -7,12 +7,12 @@ module Api::V1
     def index
       @notifications = Notification.all
 
-      render json: @notifications
+      render json: @notifications, status: :ok
     end
 
     # GET /notifications/1
     def show
-      render json: @notification
+      render json: @notification, status: :ok
     end
 
     # POST /notifications
@@ -20,7 +20,7 @@ module Api::V1
       @notification = Notification.new(notification_params)
 
       if @notification.save
-        render json: @notification, status: :created, location: @notification
+        render json: @notification, status: :created
       else
         render json: @notification.errors, status: :unprocessable_entity
       end

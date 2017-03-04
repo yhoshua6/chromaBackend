@@ -7,12 +7,12 @@ module Api::V1
     def index
       @info_properties = InfoProperty.all
 
-      render json: @info_properties
+      render json: @info_properties, status: :ok
     end
 
     # GET /info_properties/1
     def show
-      render json: @info_property
+      render json: @info_property, status: :ok
     end
 
     # POST /info_properties
@@ -20,7 +20,7 @@ module Api::V1
       @info_property = InfoProperty.new(info_property_params)
 
       if @info_property.save
-        render json: @info_property, status: :created, location: @info_property
+        render json: @info_property, status: :created
       else
         render json: @info_property.errors, status: :unprocessable_entity
       end

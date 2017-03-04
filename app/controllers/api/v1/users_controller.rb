@@ -7,12 +7,12 @@ module Api::V1
     def index
       @users = User.all
 
-      render json: @users
+      render json: @users, status: :ok
     end
 
     # GET /users/1
     def show
-      render json: @user
+      render json: @user, status: :ok
     end
 
     # POST /users
@@ -21,7 +21,7 @@ module Api::V1
       @user.password = "chroma123"
       @user.password_confirmation = "chroma123"
       if @user.save
-        render json: @user, status: :created, location: @user
+        render json: @user, status: :created
       else
         render json: @user.errors, status: :unprocessable_entity
       end

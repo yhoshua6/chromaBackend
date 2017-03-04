@@ -7,12 +7,12 @@ module Api::V1
     def index
       @branches = Branch.all
 
-      render json: @branches
+      render json: @branches, status: :ok
     end
 
     # GET /branches/1
     def show
-      render json: @branch
+      render json: @branch, status: :ok
     end
 
     # POST /branches
@@ -20,7 +20,7 @@ module Api::V1
       @branch = Branch.new(branch_params)
 
       if @branch.save
-        render json: @branch, status: :created, location: @branch
+        render json: @branch, status: :created
       else
         render json: @branch.errors, status: :unprocessable_entity
       end

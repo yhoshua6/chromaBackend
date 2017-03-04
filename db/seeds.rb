@@ -34,8 +34,8 @@ user_info.save!
 user.role_id = default_role.id
 user.info_id = user_info.id
 user.user = 'licMarcelo'
-user.password = 'iRentals123'
-user.password_confirmation = 'iRentals123'
+user.password = 'chroma123'
+user.password_confirmation = 'chroma123'
 user.save!
 =begin
 # Client's user
@@ -75,8 +75,8 @@ user_info.save!
 
 user.info_id = user_info.id
 user.user = 'test123'
-user.password = 'iRentals123'
-user.password_confirmation = 'iRentals123'
+user.password = 'chroma123'
+user.password_confirmation = 'chroma123'
 user.save!
 
 user_info.user_id = user.id

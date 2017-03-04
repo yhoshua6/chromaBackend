@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
 
     if user && user.authenticate(params[:password])
       auth_token = JsonWebToken.encode({user_id: user.id})
+      userInfo = InfoUser.find_by(id: user.info_id)
       render json: {
           :id => user.id,
           :authToken => auth_token,
@@ -13,7 +14,12 @@ class ApplicationController < ActionController::API
           :roleId => user.role_id,
           :branchRoleId => user.branch_role,
           :notificationRole => user.notifications_role,
-          :userName => user.user
+          :userName => user.user,
+          :cellphone => userInfo.cellphone,
+          :bankName => userInfo.bank_name,
+          :bankClabe => userInfo.bank_account,
+          :bankAccount => userInfo.bank_clabe, cedula
+          :cedula => userInfo.cedula
         },
         status: :ok
     else

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_id: 
+  property_type: MyString
+  name: MyString
+  description: MyString
+  surface_total: 9.99
+  surface_in: 9.99
+  surface_out: 9.99
+  notes: MyString
+
+two:
+  property_id: 
+  property_type: MyString
+  name: MyString
+  description: MyString
+  surface_total: 9.99
+  surface_in: 9.99
+  surface_out: 9.99
+  notes: MyString

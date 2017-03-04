@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  name: MyString
+  email: MyString
+  cellphone: MyString
+  part_of_pool: false
+  payment_method: MyString
+  bank_name: MyString
+  bank_account: 1
+  bank_clabe: 1
+  cedula: MyString
+
+two:
+  user_id: 
+  name: MyString
+  email: MyString
+  cellphone: MyString
+  part_of_pool: false
+  payment_method: MyString
+  bank_name: MyString
+  bank_account: 1
+  bank_clabe: 1
+  cedula: MyString

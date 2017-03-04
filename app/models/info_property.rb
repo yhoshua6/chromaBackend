@@ -1,0 +1,2 @@
+class InfoProperty < ApplicationRecord
+end

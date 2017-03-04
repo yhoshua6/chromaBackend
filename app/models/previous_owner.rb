@@ -1,0 +1,2 @@
+class PreviousOwner < ApplicationRecord
+end

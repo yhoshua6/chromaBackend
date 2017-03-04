@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role_id: 
+  info_id: 
+  branch_role: 
+  notifications_role: 
+  user: MyString
+  password_digest: MyString
+  confirmation_token: MyString
+
+two:
+  role_id: 
+  info_id: 
+  branch_role: 
+  notifications_role: 
+  user: MyString
+  password_digest: MyString
+  confirmation_token: MyString

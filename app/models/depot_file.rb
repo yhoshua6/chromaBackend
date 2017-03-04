@@ -1,0 +1,2 @@
+class DepotFile < ApplicationRecord
+end

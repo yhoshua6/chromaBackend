@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
           :cellphone => userInfo.cellphone,
           :bankName => userInfo.bank_name,
           :bankClabe => userInfo.bank_account,
-          :bankAccount => userInfo.bank_clabe, cedula
+          :bankAccount => userInfo.bank_clabe,
           :cedula => userInfo.cedula
         },
         status: :ok

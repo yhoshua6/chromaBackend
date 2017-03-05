@@ -48,7 +48,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def depot_file_params
-        params.require(:depot_file).permit(:owner_id, :receiver_id, :file, :path_file, :file_name, :type_transaction)
+        params.require(:depot_file).permit(:owner_id, :receiver_id, :file, :path_file, :file_name)
       end
   end
 end

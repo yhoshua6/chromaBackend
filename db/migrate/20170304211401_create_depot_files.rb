@@ -5,7 +5,6 @@ class CreateDepotFiles < ActiveRecord::Migration[5.0]
       t.uuid :receiver_id
       t.string :path_file
       t.string :file_name
-      t.string :type_transaction
 
       t.timestamps
     end

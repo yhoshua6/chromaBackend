@@ -10,7 +10,7 @@ class CreateInfoUsers < ActiveRecord::Migration[5.0]
       t.string :bank_name
       t.integer :bank_account
       t.integer :bank_clabe
-      t.string :cedula
+      t.string :rfc
 
       t.timestamps
     end

@@ -17,6 +17,7 @@ module Api::V1
 
     # POST /depot_files
     def create
+      #something = File.open(params[:path_file], "wb") { |f| f.write(params[:depot_file][:file].read) }
       @depot_file = DepotFile.new(depot_file_params)
 
       if @depot_file.save

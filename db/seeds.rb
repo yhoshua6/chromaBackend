@@ -28,7 +28,7 @@ user_info.payment_method = ''
 user_info.bank_name = ''
 user_info.bank_account = 0
 user_info.bank_clabe = 0
-user_info.cedula = ''
+user_info.rfc = ''
 user_info.save!
 
 user.role_id = default_role.id
@@ -49,7 +49,7 @@ user_info.payment_method = ''
 user_info.bank_name = ''
 user_info.bank_account = 0
 user_info.bank_clabe = 0
-user_info.cedula = ''
+user_info.rfc = ''
 user_info.save!
 user.role_id = default_role.id
 user.info_id = user_info.id
@@ -70,7 +70,7 @@ user_info.payment_method = 'Debit'
 user_info.bank_name = 'Cocodrile Inc.'
 user_info.bank_account = 1234
 user_info.bank_clabe = 102930
-user_info.cedula = 'some cedula'
+user_info.rfc = 'some rfc'
 user_info.save!
 
 user.info_id = user_info.id
@@ -104,4 +104,19 @@ type.save!
 
 
 directory_name = "files"
-file = Dir.mkdir(directory_name) unless File.exists?(directory_name)
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+directory_name = "files/bills"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+directory_name = "files/vouchers"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+directory_name = "files/documents"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+directory_name = "files/reports"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+directory_name = "files/gatherings"
+Dir.mkdir(directory_name) unless File.exists?(directory_name)

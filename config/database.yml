@@ -9,8 +9,8 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: 'jepifanio'
-  password: 'asd123'
+  username: 'postgres'
+  password: 'qweasd123'
   host: 'localhost'
 
 development:

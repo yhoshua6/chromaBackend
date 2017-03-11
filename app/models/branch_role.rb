@@ -1,2 +1,0 @@
-class BranchRole < ApplicationRecord
-end

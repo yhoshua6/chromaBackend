@@ -7,15 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 default_role = UsersRole.new
-default_role.role = 'Inquilinos'
+default_role.role = 'Condómino'
 default_role.save!
 
 default_role = UsersRole.new
-default_role.role = 'Propietarios'
+default_role.role = 'Arrendatario'
 default_role.save!
 
 default_role = UsersRole.new
-default_role.role = 'Administradores'
+default_role.role = 'Administrador'
 default_role.save!
 
 user = User.new
@@ -83,15 +83,23 @@ user_info.user_id = user.id
 user_info.save!
 
 type = PropertyType.new
-type.property_type = "Comercio"
+type.property_type = "Local Comercial"
 type.save!
 
 type = PropertyType.new
-type.property_type = "Edificio"
+type.property_type = "Local Restaurante"
 type.save!
 
 type = PropertyType.new
-type.property_type = "Otro"
+type.property_type = "Bodega"
+type.save!
+
+type = PropertyType.new
+type.property_type = "Cajón Estacionamiento"
+type.save!
+
+type = PropertyType.new
+type.property_type = "Loft/Oficina"
 type.save!
 
 

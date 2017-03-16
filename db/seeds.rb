@@ -5,19 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-default_role = UsersRole.new
-default_role.role = 'Condómino'
-default_role.save!
-
-default_role = UsersRole.new
-default_role.role = 'Arrendatario'
-default_role.save!
-
-default_role = UsersRole.new
-default_role.role = 'Administrador'
-default_role.save!
-
 user = User.new
 
 user_info = InfoUser.new
@@ -31,7 +18,7 @@ user_info.bank_clabe = 0
 user_info.rfc = ''
 user_info.save!
 
-user.role_id = default_role.id
+user.role = "Administrador"
 user.info_id = user_info.id
 user.user = 'licMarcelo'
 user.password = 'chroma123'
@@ -73,6 +60,7 @@ user_info.bank_clabe = 102930
 user_info.rfc = 'some rfc'
 user_info.save!
 
+user.role = "Administrador"
 user.info_id = user_info.id
 user.user = 'test123'
 user.password = 'chroma123'

@@ -126,11 +126,11 @@ ActiveRecord::Schema.define(version: 20170311050148) do
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "role_id"
     t.uuid     "info_id"
     t.uuid     "notifications_role"
     t.uuid     "group_users_id"
     t.uuid     "branch_id"
+    t.string   "role"
     t.string   "user"
     t.string   "password_digest"
     t.string   "confirmation_token"

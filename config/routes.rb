@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       resources :notifications
       resources :property_types
       resources :properties
-      resources :users_roles
       resources :users
     end
   end

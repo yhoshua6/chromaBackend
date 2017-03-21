@@ -29,7 +29,7 @@ module Api::V1
     # PATCH/PUT /branches/1
     def update
       if @branch.update(branch_params)
-        render json: @branch
+        render json: @branch, status: :Ok
       else
         render json: @branch.errors, status: :unprocessable_entity
       end
@@ -53,7 +53,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def branch_params
-        params.require(:branch).permit(:title, :branch_type, :filter, :sender_name, :receiver_name, :property_type_id, :property_id, :sender_id, :receiver_id)
+        params.require(:branch).permit(:title, :branch_type, :filter, :sender_name, :receiver_name, :property_type_id, :property_id, :branch_roles_id)
       end
   end
 end

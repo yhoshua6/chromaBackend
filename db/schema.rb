@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311050148) do
+ActiveRecord::Schema.define(version: 20170318152128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "branch_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "sender_id"
+    t.uuid     "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "branches", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "title"
@@ -23,8 +30,7 @@ ActiveRecord::Schema.define(version: 20170311050148) do
     t.string   "receiver_name"
     t.uuid     "property_type_id"
     t.uuid     "property_id"
-    t.uuid     "sender_id"
-    t.uuid     "receiver_id"
+    t.uuid     "branch_roles_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -82,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170311050148) do
     t.string   "payment_method"
     t.string   "bank_name"
     t.integer  "bank_account"
-    t.integer  "bank_clabe"
+    t.string   "bank_clabe"
     t.string   "rfc"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -130,18 +136,13 @@ ActiveRecord::Schema.define(version: 20170311050148) do
     t.uuid     "notifications_role"
     t.uuid     "group_users_id"
     t.uuid     "branch_id"
+    t.uuid     "branch_role"
     t.string   "role"
     t.string   "user"
     t.string   "password_digest"
     t.string   "confirmation_token"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-  end
-
-  create_table "users_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

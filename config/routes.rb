@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/send_comments' => 'application#user_comments'
   namespace :api do
     namespace :v1 do
+      resources :branch_roles
       resources :groups_users
       resources :groups
       resources :notifications_roles

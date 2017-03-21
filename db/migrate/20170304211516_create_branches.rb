@@ -7,8 +7,7 @@ class CreateBranches < ActiveRecord::Migration[5.0]
       t.string :receiver_name
       t.uuid :property_type_id
       t.uuid :property_id
-      t.uuid :sender_id
-      t.uuid :receiver_id
+      t.uuid :branch_roles_id
 
       t.timestamps
     end

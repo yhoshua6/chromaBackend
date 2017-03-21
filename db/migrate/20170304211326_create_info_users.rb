@@ -9,7 +9,7 @@ class CreateInfoUsers < ActiveRecord::Migration[5.0]
       t.string :payment_method
       t.string :bank_name
       t.integer :bank_account
-      t.integer :bank_clabe
+      t.string :bank_clabe
       t.string :rfc
 
       t.timestamps

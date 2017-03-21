@@ -17,7 +17,7 @@ module Api::V1
 
     # POST /depot_files
     def create
-      #something = File.open(params[:path_file], "wb") { |f| f.write(params[:depot_file][:file].read) }
+      save_incoming_file
       @depot_file = DepotFile.new(depot_file_params)
 
       if @depot_file.save
@@ -42,6 +42,14 @@ module Api::V1
     end
 
     private
+
+      def save_incoming_file
+        file_name = params[:depot_file][:file_name]
+        file = params[:depot_file][:file]
+        FileUtils.cp file.tempfile, Dir.pwd + "/files/bills/#{file_name}"
+        params[:depot_file].delete :file_name
+        params[:depot_file].delete :file
+      end
       # Use callbacks to share common setup or constraints between actions.
       def set_depot_file
         @depot_file = DepotFile.find(params[:id])

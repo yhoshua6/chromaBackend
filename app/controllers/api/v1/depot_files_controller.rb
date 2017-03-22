@@ -1,7 +1,7 @@
 module Api::V1
   class DepotFilesController < ApplicationController
     before_filter :authenticate_request!
-    before_action :set_depot_file, only: [:show, :update, :destroy]
+    before_action :set_depot_file, only: [:show, :update, :destroy, :download]
 
     # GET /depot_files
     def index
@@ -39,6 +39,12 @@ module Api::V1
     # DELETE /depot_files/1
     def destroy
       @depot_file.destroy
+    end
+
+    # DELETE /depot_files/1
+    def download
+      #send_file @depot_file.path_file
+      send_file Dir.pwd + '/files/bills/test.jpg'
     end
 
     private

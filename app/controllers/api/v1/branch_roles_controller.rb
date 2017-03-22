@@ -47,7 +47,7 @@ module Api::V1
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_role_params
-      params.require(:branch_role).permit(:sender_id, :receiver_id)
+      params.require(:branch_role).permit(:branch_id, :sender_id, :receiver_id)
     end
   end
 end

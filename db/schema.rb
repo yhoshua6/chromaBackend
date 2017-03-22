@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170318152128) do
   enable_extension "uuid-ossp"
 
   create_table "branch_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "branch_id"
     t.uuid     "sender_id"
     t.uuid     "receiver_id"
     t.datetime "created_at",  null: false

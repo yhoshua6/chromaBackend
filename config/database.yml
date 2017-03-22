@@ -16,6 +16,9 @@ default: &default
 development:
   <<: *default
   database: iRentalsDev
+  host: localhost
+  username: postgres
+  password: josue
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,7 +26,13 @@ development:
 test:
   <<: *default
   database: iRentalsTest
+  host: localhost
+  username: postgres
+  password: josue
 
 production:
   <<: *default
   database: iRentals
+  adapter: postgresql
+  username: deploy
+  password: Brick2015!

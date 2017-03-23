@@ -1,5 +1,6 @@
 module Api::V1
   class BranchRolesController < ApplicationController
+    before_filter :authenticate_request!
     before_action :set_branch_role, only: [:show, :update, :destroy]
 
     # GET /branch_roles

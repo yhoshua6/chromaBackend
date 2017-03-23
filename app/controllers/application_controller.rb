@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
           :authToken => auth_token,
           :infoId => user.info_id,
           :role => user.role,
-          :branchId => user.branch_id,
+          :branchRoleId => user.branch_role,
           :notificationRole => user.notifications_role,
           :groupRoleId  => user.group_users_id,
           :userName => user.user,

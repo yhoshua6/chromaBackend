@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 20170318152128) do
     t.uuid     "info_id"
     t.uuid     "notifications_role"
     t.uuid     "group_users_id"
-    t.uuid     "branch_id"
     t.uuid     "branch_role"
     t.string   "role"
     t.string   "user"

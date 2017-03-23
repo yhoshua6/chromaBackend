@@ -12,6 +12,12 @@ module Api::V1
 
     # GET /depot_files/1
     def show
+      puts '////////////////////'
+      puts '////////////////////'
+      puts @depot_file
+      puts '////////////////////'
+      puts '////////////////////'
+      send_file Dir.pwd + '/files/bills/test.jpg'
       render json: @depot_file, status: :ok
     end
 
@@ -39,12 +45,6 @@ module Api::V1
     # DELETE /depot_files/1
     def destroy
       @depot_file.destroy
-    end
-
-    # DELETE /depot_files/1
-    def download
-      #send_file @depot_file.path_file
-      send_file Dir.pwd + '/files/bills/test.jpg'
     end
 
     private

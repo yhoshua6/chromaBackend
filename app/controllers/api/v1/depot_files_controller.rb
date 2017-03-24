@@ -17,7 +17,7 @@ module Api::V1
       puts @depot_file
       puts '////////////////////'
       puts '////////////////////'
-      send_file Dir.pwd + '/files/bills/test.jpg' if !params[:depot_file][:download].blank?
+      send_file @depot_file.path_file, disposition: 'attachment'
       render json: @depot_file, status: :ok
     end
 
@@ -44,7 +44,11 @@ module Api::V1
 
     # DELETE /depot_files/1
     def destroy
-      @depot_file.destroy
+      if @depot_file.destroy
+        FileUtils.rm @depot_file.path_file
+      else
+        render json: @depot_file.errors, status: :unprocessable_entity
+      end
     end
 
     private

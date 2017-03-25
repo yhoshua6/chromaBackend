@@ -12,12 +12,7 @@ module Api::V1
 
     # GET /depot_files/1
     def show
-      puts '////////////////////'
-      puts '////////////////////'
-      puts @depot_file
-      puts '////////////////////'
-      puts '////////////////////'
-      send_file @depot_file.path_file, disposition: 'attachment'
+      send_file @depot_file.path_file, :type => 'application/pdf', disposition: 'attachment'
       render json: @depot_file, status: :ok
     end
 
@@ -53,6 +48,8 @@ module Api::V1
 
     private
       def save_incoming_file
+        #FileUtils.mkdir params[:depot_file][:owner_id]
+        ##{params[:depot_file][:owner_id]}/
         file_name = params[:depot_file][:file_name]
         file = params[:depot_file][:file]
         location = params[:depot_file][:location]

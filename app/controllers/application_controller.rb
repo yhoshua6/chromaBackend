@@ -7,12 +7,11 @@ class ApplicationController < ActionController::API
     if user && user.authenticate(params[:password])
       auth_token = JsonWebToken.encode({user_id: user.id})
       user_info = InfoUser.find_by(id: user.info_id)
-      render json: {
+      login_info = {
           :id => user.id,
           :authToken => auth_token,
           :infoId => user.info_id,
           :role => user.role,
-          :branchRoleId => user.branch_role,
           :notificationRole => user.notifications_role,
           :groupRoleId  => user.group_users_id,
           :userName => user.user,
@@ -22,8 +21,9 @@ class ApplicationController < ActionController::API
           :bankAccount => user_info.bank_clabe,
           :paymentMethod => user_info.payment_method,
           :rfc => user_info.rfc
-        },
-        status: :ok
+      }
+
+      render json: login_info, status: :ok
     else
       render json: {error: 'Invalid username/password'}, status: :unauthorized
     end

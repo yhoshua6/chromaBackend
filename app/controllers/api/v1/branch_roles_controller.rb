@@ -43,12 +43,19 @@ module Api::V1
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_branch_role
-      @branch_role = BranchRole.find(params[:id])
+      if params[:filter].blank?
+        @branch_role = BranchRole.find(params[:id])
+      else
+        @branch_role = BranchRole.where("sender_id = ? AND branch_type = ?", params[:id], params[:filter]).first
+        if @branch_role.blank?
+          @branch_role = BranchRole.where("receiver_id = ? AND branch_type = ?", params[:id], params[:filter]).first
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_role_params
-      params.require(:branch_role).permit(:branch_id, :sender_id, :receiver_id)
+      params.require(:branch_role).permit(:branch_id, :sender_id, :receiver_id, :filter, :branch_type)
     end
   end
 end

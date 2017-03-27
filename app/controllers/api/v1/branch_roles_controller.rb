@@ -1,53 +1,61 @@
 module Api::V1
-  class BranchRolesController < ApplicationController
-    before_action :set_branch_role, only: [:show, :update, :destroy]
+  class BranchesRolesController < ApplicationController
+    before_filter :authenticate_request!
+    before_action :set_branches_role, only: [:show, :update, :destroy]
 
-    # GET /branch_roles
+    # GET /branches_roles
     def index
-      @branch_roles = BranchRole.all
+      @branches_roles = BranchesRole.all
 
-      render json: @branch_roles, status: :ok
+      render json: @branches_roles, status: :ok
     end
 
-    # GET /branch_roles/1
+    # GET /branches_roles/1
     def show
-      render json: @branch_role, status: :ok
+      render json: @branches_role, status: :ok
     end
 
-    # POST /branch_roles
+    # POST /branches_roles
     def create
-      @branch_role = BranchRole.new(branch_role_params)
+      @branches_role = BranchesRole.new(branches_role_params)
 
-      if @branch_role.save
-        render json: @branch_role, status: :created
+      if @branches_role.save
+        render json: @branches_role, status: :created
       else
-        render json: @branch_role.errors, status: :unprocessable_entity
+        render json: @branches_role.errors, status: :unprocessable_entity
       end
     end
 
-    # PATCH/PUT /branch_roles/1
+    # PATCH/PUT /branches_roles/1
     def update
-      if @branch_role.update(branch_role_params)
-        render json: @branch_role, status: :ok
+      if @branches_role.update(branches_role_params)
+        render json: @branches_role, status: :ok
       else
-        render json: @branch_role.errors, status: :unprocessable_entity
+        render json: @branches_role.errors, status: :unprocessable_entity
       end
     end
 
-    # DELETE /branch_roles/1
+    # DELETE /branches_roles/1
     def destroy
-      @branch_role.destroy
+      @branches_role.destroy
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
-    def set_branch_role
-      @branch_role = BranchRole.find(params[:id])
+    def set_branches_role
+      if params[:filter].blank?
+        @branches_role = BranchesRole.find(params[:id])
+      else
+        @branches_role = BranchesRole.where("sender_id = ? AND branch_type = ?", params[:id], params[:filter]).first
+        if @branches_role.blank?
+          @branches_role = BranchesRole.where("receiver_id = ? AND branch_type = ?", params[:id], params[:filter]).first
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def branch_role_params
-      params.require(:branch_role).permit(:branch_id, :sender_id, :receiver_id)
+    def branches_role_params
+      params.require(:branches_role).permit(:branch_id, :sender_id, :receiver_id, :branch_type)
     end
   end
 end

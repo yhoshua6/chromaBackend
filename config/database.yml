@@ -15,7 +15,7 @@ default: &default
 
 development:
   <<: *default
-  database: iRentalsDev
+  database: irentalsdev
   host: localhost
   username: postgres
   password: josue
@@ -25,14 +25,14 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: iRentalsTest
+  database: irentalstest
   host: localhost
   username: postgres
   password: josue
 
 production:
   <<: *default
-  database: iRentals
+  database: irentals
   adapter: postgresql
   username: deploy
   password: Brick2015!

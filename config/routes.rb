@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   post '/send_comments' => 'application#user_comments'
   namespace :api do
     namespace :v1 do
-      #get '/download/:id', to: 'depotfile#download'
-      resources :branch_roles
+      resources :branches_roles
       resources :groups_users
       resources :groups
       resources :notifications_roles

@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170318152128) do
   create_table "notifications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id"
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.string   "receiver_user"
     t.uuid     "notifications_roles_id"
     t.datetime "created_at",             null: false

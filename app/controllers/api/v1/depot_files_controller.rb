@@ -57,11 +57,18 @@ module Api::V1
       def save_incoming_file
         file_name = params[:depot_file][:file_name]
         location = params[:depot_file][:location]
-        path_to_file = Dir.pwd + "/files/#{location}/#{file_name}.#{File.extname(params[:depot_file][:originalName])}"
+        file = params[:depot_file][:file]
+        dir_base = Dir.pwd + "/files/#{location}/#{params[:depot_file][:owner_id]}"
+        FileUtils.mkdir_p(dir_base) if !File.directory? dir_base
+        path_to_file = dir_base + "/#{file_name}#{File.extname(params[:depot_file][:originalName])}"
+        if File.exist? path_to_file
+          path_to_file = dir_base + "/#{file_name}#{1 + rand(1000)}#{File.extname(params[:depot_file][:originalName])}"
+        end
         FileUtils.cp file.tempfile, path_to_file
         params[:depot_file][:path_file] = path_to_file
         params[:depot_file].delete :file
         params[:depot_file].delete :location
+        params[:depot_file].delete :originalName
       end
 
       # Use callbacks to share common setup or constraints between actions.

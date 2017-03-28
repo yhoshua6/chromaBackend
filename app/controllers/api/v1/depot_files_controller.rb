@@ -12,7 +12,14 @@ module Api::V1
 
     # GET /depot_files/1
     def show
-      send_file @depot_file.path_file, :type => 'application/pdf', disposition: 'attachment'
+      extension = File.extname(@depot_file.path_file)
+      type = (extension === '.pdf') ?  'application/' + extension : 'image/' + extension
+      send_file(
+          @depot_file.path_file,
+          :type => type,
+          disposition: 'attachment',
+          filename: @depot_file.file_name + extension
+      )
       render json: @depot_file, status: :ok
     end
 
@@ -48,12 +55,9 @@ module Api::V1
 
     private
       def save_incoming_file
-        #FileUtils.mkdir params[:depot_file][:owner_id]
-        ##{params[:depot_file][:owner_id]}/
         file_name = params[:depot_file][:file_name]
-        file = params[:depot_file][:file]
         location = params[:depot_file][:location]
-        path_to_file = Dir.pwd + "/files/#{location}/#{file_name}.pdf"
+        path_to_file = Dir.pwd + "/files/#{location}/#{file_name}.#{File.extname(params[:depot_file][:originalName])}"
         FileUtils.cp file.tempfile, path_to_file
         params[:depot_file][:path_file] = path_to_file
         params[:depot_file].delete :file
@@ -67,7 +71,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def depot_file_params
-        params.require(:depot_file).permit(:owner_id, :location, :download, :file, :path_file, :file_name)
+        params.require(:depot_file).permit(:owner_id, :location, :originalName, :file, :path_file, :file_name)
       end
   end
 end

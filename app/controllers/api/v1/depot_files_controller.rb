@@ -13,14 +13,18 @@ module Api::V1
     # GET /depot_files/1
     def show
       extension = File.extname(@depot_file.path_file)
-      type = (extension === '.pdf') ?  'application/' + extension : 'image/' + extension
-      send_file(
-          @depot_file.path_file,
-          :type => type,
-          disposition: 'attachment',
-          filename: @depot_file.file_name + extension
+      type = (extension === '.pdf') ?  'application/pdf' : 'image/*'
+      disposition = (extension === '.pdf') ?  'attachment' : 'inline'
+      data = open(@depot_file.path_file)
+      send_data(
+          data.read,
+          filename: File.basename(@depot_file.path_file),
+          type: type,
+          disposition: disposition,
+          stream: 'true',
+          buffer_size: '4096'
       )
-      render json: @depot_file, status: :ok
+      #render json: @depot_file, status: :ok
     end
 
     # POST /depot_files

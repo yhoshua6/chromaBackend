@@ -7,14 +7,18 @@ class ApplicationController < ActionController::API
     if user && user.authenticate(params[:password])
       auth_token = JsonWebToken.encode({user_id: user.id})
       user_info = InfoUser.find_by(id: user.info_id)
+      notifications_roles = NotificationsRole.where(receiver_id: user.id)
       login_info = {
           :id => user.id,
           :authToken => auth_token,
           :infoId => user.info_id,
           :role => user.role,
-          :notificationRole => user.notifications_role,
+          :notificationRoles => notifications_roles,
           :groupRoleId  => user.group_users_id,
-          :userName => user.user,
+          :userName => user_info.name,
+          :user => user.user,
+          :partPool => user_info.part_of_pool,
+          :email => user_info.email,
           :cellphone => user_info.cellphone,
           :bankName => user_info.bank_name,
           :bankClabe => user_info.bank_account,

@@ -16,15 +16,6 @@ ActiveRecord::Schema.define(version: 20170325195229) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "branch_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "branch_id"
-    t.uuid     "sender_id"
-    t.uuid     "receiver_id"
-    t.string   "branch_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "branches", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "title"
     t.string   "branch_type"

@@ -53,34 +53,18 @@ class ApplicationController < ActionController::API
   end
 
   def forgot_password
-    token = params[:token].to_s
-
-    user = User.find_by(confirmation_token: token)
-    if user.present?
-      user.password = params[:password]
-      user.password_confirmation = params[:password_confirmation]
-      if user.save
-        render json: {status: 'User password updated successfully'}, status: :ok
-      else
-        render json: {status: 'There was an error to update the user password'}, status: :internal_server_error
-      end
-    else
-      render json: {status: 'Invalid user'}, status: :not_found
-    end
-  end
-
-  def user_comments
-    user = {
-        :userName => params[:userName],
-        :userEmail => params[:userEmail],
-        :userComments => params[:userComments]
-    }
-    @user = user
-    if MailServiceMailer.send_comments(@user).deliver
-      render json: {status: 'User\'s comment sent.'}, status: :ok
+    @user = User.find_by(user: params[:user])
+    @user_info = InfoUser.find_by user_id: @user.id
+    if PostmanMailer.send_password(@user, @user_info).deliver
+      render json: {status: 'User\'s password sent.'}, status: :ok
     else
       render json: {status: 'Failed to send the user\'s comments to the admin.'}, status: :internal_server_error
     end
+  end
+
+  def suport_comments
+    authenticate_request!
+    puts "hey"
   end
 
   protected

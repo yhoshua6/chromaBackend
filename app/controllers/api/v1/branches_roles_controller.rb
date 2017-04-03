@@ -50,7 +50,6 @@ module Api::V1
     def set_branch
       @branches_role = BranchesRole.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def branches_role_params
       params.require(:branches_role).permit(:branch_id, :sender_id, :receiver_id, :branch_type)

@@ -1,7 +1,8 @@
 module Api::V1
   class BranchesRolesController < ApplicationController
     before_filter :authenticate_request!
-    before_action :set_branches_role, only: [:show, :update, :destroy]
+    before_action :set_branches_role, only: [:show]
+    before_action :set_branch, only: [:update, :destroy]
 
     # GET /branches_roles
     def index
@@ -44,6 +45,10 @@ module Api::V1
     # Use callbacks to share common setup or constraints between actions.
     def set_branches_role
       @branches_role = BranchesRole.where("sender_id = ? OR receiver_id = ?", params[:id], params[:id])
+    end
+
+    def set_branch
+      @branches_role = BranchesRole.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -4,7 +4,6 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.uuid :user_id
       t.string :title
       t.string :content
-      t.uuid :image
       #t.string :receiver_user
       #t.uuid :notifications_roles_id
 

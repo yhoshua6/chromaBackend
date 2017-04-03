@@ -48,7 +48,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def notification_params
-        params.require(:notification).permit(:user_id, :title, :content, :image)
+        params.require(:notification).permit(:user_id, :title, :content)
       end
   end
 end

@@ -10,39 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318152128) do
+ActiveRecord::Schema.define(version: 20170325195229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "branch_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "branch_id"
-    t.uuid     "sender_id"
-    t.uuid     "receiver_id"
+  create_table "branches", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "title"
+    t.string   "branch_type"
+    t.uuid     "property_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "branches", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "title"
+  create_table "branches_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "branch_id"
+    t.uuid     "sender_id"
+    t.uuid     "receiver_id"
     t.string   "branch_type"
-    t.string   "sender_name"
-    t.string   "receiver_name"
-    t.uuid     "property_type_id"
-    t.uuid     "property_id"
-    t.uuid     "branch_roles_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "depot_files", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "owner_id"
-    t.uuid     "receiver_id"
     t.string   "path_file"
     t.string   "file_name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "groups", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -98,11 +94,10 @@ ActiveRecord::Schema.define(version: 20170318152128) do
   create_table "notifications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id"
     t.string   "title"
-    t.text     "content"
-    t.string   "receiver_user"
-    t.uuid     "notifications_roles_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "content"
+    t.uuid     "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "notifications_roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -134,10 +129,7 @@ ActiveRecord::Schema.define(version: 20170318152128) do
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "info_id"
-    t.uuid     "notifications_role"
     t.uuid     "group_users_id"
-    t.uuid     "branch_id"
-    t.uuid     "branch_role"
     t.string   "role"
     t.string   "user"
     t.string   "password_digest"

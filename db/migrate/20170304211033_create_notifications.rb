@@ -3,9 +3,10 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
     create_table :notifications, id: :uuid do |t|
       t.uuid :user_id
       t.string :title
-      t.text :content
-      t.string :receiver_user
-      t.uuid :notifications_roles_id
+      t.string :content
+      t.uuid :image
+      #t.string :receiver_user
+      #t.uuid :notifications_roles_id
 
       t.timestamps
     end

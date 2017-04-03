@@ -43,17 +43,12 @@ module Api::V1
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_branch
-        if params[:filter].nil?
-          @branch = Branch.find(params[:id])
-        else
-          @branch = Branch.find_by(params[:id]).where(branch_type: param[:filter]).first
-        end
-
+        @branch = Branch.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def branch_params
-        params.require(:branch).permit(:title, :branch_type, :filter, :sender_name, :receiver_name, :property_type_id, :property_id, :branch_roles_id)
+        params.require(:branch).permit(:title, :branch_type, :property_id)
       end
   end
 end

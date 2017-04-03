@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  branch_id: 
   sender_id: 
   receiver_id: 
+  branch_type: MyString
 
 two:
+  branch_id: 
   sender_id: 
   receiver_id: 
+  branch_type: MyString

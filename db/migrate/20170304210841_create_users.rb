@@ -3,10 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users, id: :uuid do |t|
       t.uuid :info_id
-      t.uuid :notifications_role
       t.uuid :group_users_id
-      t.uuid :branch_id
-      t.uuid :branch_role
       t.string :role
       t.string :user
       t.string :password_digest
